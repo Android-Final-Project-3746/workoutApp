@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_workout"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutFragment"
+        android:label="Workout"
+        tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/navigation_dietary"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietaryFragment"
+        android:label="Dietary"
+        tools:layout="@layout/fragment_dietary" />
+</navigation>

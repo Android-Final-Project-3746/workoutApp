@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dietary_nav"
+    app:startDestination="@id/dietAddFragment">
+
+    <fragment
+        android:id="@+id/dietAddFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietAddFragment"
+        android:label="fragment_diet_add"
+        tools:layout="@layout/fragment_diet_add" />
+    <fragment
+        android:id="@+id/dietListFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietListFragment"
+        android:label="fragment_diet_list"
+        tools:layout="@layout/fragment_diet_list" >
+        <action
+            android:id="@+id/addDietPlan"
+            app:destination="@id/dietAddFragment" />
+        <action
+            android:id="@+id/action_dietListFragment_to_dietaryDetailFragment"
+            app:destination="@id/dietaryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dietaryDetailFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietaryDetailFragment"
+        android:label="fragment_dietary_detail"
+        tools:layout="@layout/fragment_dietary_detail" />
+</navigation>
