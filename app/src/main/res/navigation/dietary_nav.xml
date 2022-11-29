@@ -3,28 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dietary_nav"
-    app:startDestination="@id/dietAddFragment">
+    app:startDestination="@id/dietListFragment">
 
-    <fragment
-        android:id="@+id/dietAddFragment"
-        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietAddFragment"
-        android:label="fragment_diet_add"
-        tools:layout="@layout/fragment_diet_add" />
     <fragment
         android:id="@+id/dietListFragment"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietListFragment"
         android:label="fragment_diet_list"
         tools:layout="@layout/fragment_diet_list" >
         <action
-            android:id="@+id/addDietPlan"
-            app:destination="@id/dietAddFragment" />
-        <action
-            android:id="@+id/action_dietListFragment_to_dietaryDetailFragment"
+            android:id="@+id/showDietaryDetail"
             app:destination="@id/dietaryDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/dietaryDetailFragment"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.dietary.DietaryDetailFragment"
         android:label="fragment_dietary_detail"
-        tools:layout="@layout/fragment_dietary_detail" />
+        tools:layout="@layout/fragment_dietary_detail" >
+        <argument
+            android:name="dietaryId"
+            app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/select_date_dietary"
+            app:destination="@id/datePickerFragment" />
+        <action
+            android:id="@+id/select_time_dietary"
+            app:destination="@id/timePickerFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.pickers.DatePickerFragment"
+        android:label="DatePickerFragment" >
+        <argument
+            android:name="dietaryDate"
+            app:argType="java.util.Date" />
+    </dialog>
+    <dialog
+        android:id="@+id/timePickerFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.pickers.TimePickerFragment"
+        android:label="TimePickerFragment" >
+        <argument
+            android:name="dietaryTime"
+            app:argType="java.util.Date" />
+    </dialog>
 </navigation>

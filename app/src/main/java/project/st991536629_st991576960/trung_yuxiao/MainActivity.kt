@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import project.st991536629_st991576960.trung_yuxiao.databinding.ActivityMainBinding
+import project.st991536629_st991576960.trung_yuxiao.framework.database.ProjectDatabase
 
 class MainActivity : AppCompatActivity() {
 

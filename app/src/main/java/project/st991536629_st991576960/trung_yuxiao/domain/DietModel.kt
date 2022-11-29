@@ -7,5 +7,5 @@ data class DietModel(
     val id: UUID,
     val dateTime: Date,
     val food: String,
-    val quantity: Long,
+    val quantity: String,
 )

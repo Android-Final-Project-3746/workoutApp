@@ -6,11 +6,11 @@ import java.util.*
 
 class RunningExerciseRepository(private val dataSource: RunningExerciseDataSource ) {
 
-    suspend fun addRunningExercise(item: RunningExercise) = dataSource.add(item);
+    suspend fun addRunningExercise(item: RunningExercise) = dataSource.insert(item);
 
     suspend fun removeRunningExercise(item: RunningExercise) = dataSource.remove(item);
 
-    suspend fun updateRunningExercise(item: RunningExercise) = dataSource.update(item);
+    suspend fun updateRunningExercise(item: RunningExercise) = dataSource.updates(item);
 
     suspend fun getRunningExerciseById(id: UUID) = dataSource.getById(id);
 

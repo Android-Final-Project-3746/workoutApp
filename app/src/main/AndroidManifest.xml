@@ -4,6 +4,7 @@
     package="project.st991536629_st991576960.trung_yuxiao">
 
     <application
+        android:name=".WorkoutApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

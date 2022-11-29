@@ -6,11 +6,11 @@ import java.util.UUID
 
 class PushUpExerciseRepository (private val dataSource: PushUpExerciseDataSource) {
 
-    suspend fun addPushUp(pushUp: PushUpExercise) = dataSource.add(pushUp);
+    suspend fun addPushUp(pushUp: PushUpExercise) = dataSource.insert(pushUp);
 
     suspend fun removePushUp(pushUp: PushUpExercise) = dataSource.remove(pushUp);
 
-    suspend fun editPushUp(pushUp: PushUpExercise) = dataSource.update(pushUp);
+    suspend fun editPushUp(pushUp: PushUpExercise) = dataSource.updates(pushUp);
 
     suspend fun getPushUpById(id: UUID) = dataSource.getById(id);
 
