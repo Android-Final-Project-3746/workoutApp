@@ -1,7 +1,10 @@
 package project.st991536629_st991576960.trung_yuxiao.data
 
+import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import project.st991536629_st991576960.trung_yuxiao.domain.RunningExercise
+import project.st991536629_st991576960.trung_yuxiao.framework.RoomDietDataSource
+import project.st991536629_st991576960.trung_yuxiao.framework.RoomRunningExerciseDataSource
 import java.util.*
 
 class RunningExerciseRepository(private val dataSource: RunningExerciseDataSource ) {
@@ -14,5 +17,20 @@ class RunningExerciseRepository(private val dataSource: RunningExerciseDataSourc
 
     suspend fun getRunningExerciseById(id: UUID) = dataSource.getById(id);
 
-    suspend fun getAllRunningExercise(): Flow<List<RunningExercise>> = dataSource.getAll();
+    fun getAllRunningExercise(): Flow<List<RunningExercise>> = dataSource.getAll();
+
+    companion object {
+
+        private var INSTANCE: RunningExerciseRepository? = null;
+
+        fun initialize(context: Context) {
+            if ( INSTANCE == null ) {
+                INSTANCE = RunningExerciseRepository(RoomRunningExerciseDataSource(context))
+            }
+        }
+
+        fun get(): RunningExerciseRepository {
+            return INSTANCE ?: throw IllegalStateException("Running Exercise Repository must be initialized")
+        }
+    }
 }

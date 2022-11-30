@@ -13,5 +13,5 @@ interface RunningExerciseDataSource {
 
     suspend fun getById(id: UUID): RunningExercise;
 
-    suspend fun getAll(): Flow<List<RunningExercise>>
+    fun getAll(): Flow<List<RunningExercise>>
 }
