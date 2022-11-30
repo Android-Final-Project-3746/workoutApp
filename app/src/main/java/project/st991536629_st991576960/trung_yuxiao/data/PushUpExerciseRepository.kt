@@ -17,6 +17,8 @@ class PushUpExerciseRepository (private val dataSource: PushUpExerciseDataSource
 
     suspend fun getPushUpById(id: UUID) = dataSource.getById(id);
 
+    suspend fun deleteById(id: UUID) = dataSource.deleteById(id);
+
     fun getAllPushUp(): Flow<List<PushUpExercise>> = dataSource.getAll();
 
     companion object {

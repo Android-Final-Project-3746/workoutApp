@@ -14,7 +14,7 @@
             android:id="@+id/add_workout_plan"
             app:destination="@id/workoutAddFragment" />
         <action
-            android:id="@+id/action_workoutListFragment_to_workoutDetailFragment"
+            android:id="@+id/show_exercise_detail"
             app:destination="@id/workoutDetailFragment" />
     </fragment>
     <fragment
@@ -26,5 +26,12 @@
         android:id="@+id/workoutDetailFragment"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutDetailFragment"
         android:label="fragment_workout_detail"
-        tools:layout="@layout/fragment_workout_detail" />
+        tools:layout="@layout/fragment_workout_detail" >
+        <argument
+            android:name="exerciseId"
+            app:argType="java.util.UUID" />
+        <argument
+            android:name="exerciseType"
+            app:argType="project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType" />
+    </fragment>
 </navigation>

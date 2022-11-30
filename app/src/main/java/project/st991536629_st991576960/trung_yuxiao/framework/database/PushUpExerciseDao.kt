@@ -24,4 +24,7 @@ interface PushUpExerciseDao {
     @Delete
     suspend fun delete(item: PushUpExerciseEntity);
 
+    @Query("DELETE FROM push_up_exercises WHERE id=(:id)")
+    suspend fun deleteById(id: UUID)
+
 }

@@ -13,6 +13,8 @@ interface PushUpExerciseDataSource {
 
     suspend fun getById(id: UUID): PushUpExercise;
 
+    suspend fun deleteById(id: UUID);
+
     fun getAll(): Flow<List<PushUpExercise>>
 
 }

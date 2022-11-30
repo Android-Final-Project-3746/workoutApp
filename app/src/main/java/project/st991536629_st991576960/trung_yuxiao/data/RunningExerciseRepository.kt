@@ -17,6 +17,8 @@ class RunningExerciseRepository(private val dataSource: RunningExerciseDataSourc
 
     suspend fun getRunningExerciseById(id: UUID) = dataSource.getById(id);
 
+    suspend fun deleteById(id: UUID) = dataSource.deleteById(id);
+
     fun getAllRunningExercise(): Flow<List<RunningExercise>> = dataSource.getAll();
 
     companion object {

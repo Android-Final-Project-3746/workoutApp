@@ -52,6 +52,10 @@ class RoomRunningExerciseDataSource(context: Context) : RunningExerciseDataSourc
         )
     }
 
+    override suspend fun deleteById(id: UUID) {
+        runningDao.deleteById(id);
+    }
+
     override fun getAll(): Flow<List<RunningExercise>> {
         return runningDao.getAll().transform { items ->
 
@@ -63,8 +67,7 @@ class RoomRunningExerciseDataSource(context: Context) : RunningExerciseDataSourc
                     dateTime = item.dateTime,
                     distance = item.distance,
                     isDone = item.isDone,
-                )
-                )
+                ))
             }
 
             emit(runningExercises)

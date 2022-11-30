@@ -7,7 +7,6 @@ import project.st991536629_st991576960.trung_yuxiao.data.RunningExerciseReposito
 import project.st991536629_st991576960.trung_yuxiao.framework.RoomDietDataSource
 
 class WorkoutApplication: Application() {
-
     override fun onCreate() {
         super.onCreate()
 

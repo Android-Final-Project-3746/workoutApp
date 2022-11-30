@@ -55,6 +55,10 @@ class RoomPushUpExerciseDataSource(context: Context) : PushUpExerciseDataSource 
         )
     }
 
+    override suspend fun deleteById(id: UUID) {
+        pushUpDao.deleteById(id);
+    }
+
     override fun getAll(): Flow<List<PushUpExercise>> {
         return pushUpDao.getAll().transform { items ->
 
