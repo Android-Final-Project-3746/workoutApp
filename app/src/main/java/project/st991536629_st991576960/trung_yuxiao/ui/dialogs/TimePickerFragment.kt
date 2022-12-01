@@ -1,10 +1,8 @@
-package project.st991536629_st991576960.trung_yuxiao.ui.pickers
+package project.st991536629_st991576960.trung_yuxiao.ui.dialogs
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
@@ -23,7 +21,7 @@ class TimePickerFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val calendar = Calendar.getInstance();
-        calendar.time = args.dietaryTime;
+        calendar.time = args.time;
         val initialHour = calendar.get(Calendar.HOUR);
         val initialMinute = calendar.get(Calendar.MINUTE);
 

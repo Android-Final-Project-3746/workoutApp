@@ -1,6 +1,5 @@
 package project.st991536629_st991576960.trung_yuxiao.ui.dietary
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,8 +16,8 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.launch
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentDietaryDetailBinding
 import project.st991536629_st991576960.trung_yuxiao.domain.DietModel
-import project.st991536629_st991576960.trung_yuxiao.ui.pickers.DatePickerFragment
-import project.st991536629_st991576960.trung_yuxiao.ui.pickers.TimePickerFragment
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DatePickerFragment
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.TimePickerFragment
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -65,10 +64,6 @@ class DietaryDetailFragment : Fragment() {
                 }
             }
 
-            // TODO for Planned Date and Time Button
-
-
-            // TODO for edit button
             dietaryEditBtn.setOnClickListener {
                 dietaryDetailViewModel.updateToDatabase()
             }
@@ -125,6 +120,8 @@ class DietaryDetailFragment : Fragment() {
     }
 
     private fun extractDate(dateTime: Date): String {
+        val pattern = "EE, dd LL yyyy "
+
         val localDateTime = convertDateToLocalDate(dateTime)
         val result: String = "${localDateTime.dayOfWeek} - ${localDateTime.month} ${localDateTime.dayOfMonth}, ${localDateTime.year}"
 

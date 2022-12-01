@@ -16,6 +16,9 @@
         <action
             android:id="@+id/show_exercise_detail"
             app:destination="@id/workoutDetailFragment" />
+        <action
+            android:id="@+id/show_delete_confirm_dialog"
+            app:destination="@id/deleteConfirmationDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutAddFragment"
@@ -33,5 +36,38 @@
         <argument
             android:name="exerciseType"
             app:argType="project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType" />
+        <action
+            android:id="@+id/show_workout_time_picker"
+            app:destination="@id/timePickerFragment2" />
+        <action
+            android:id="@+id/show_workout_date_picker"
+            app:destination="@id/datePickerFragment2" />
     </fragment>
+    <dialog
+        android:id="@+id/deleteConfirmationDialogFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteConfirmationDialogFragment"
+        android:label="DeleteConfirmationDialogFragment" >
+        <argument
+            android:name="exerciseID"
+            app:argType="java.util.UUID" />
+        <argument
+            android:name="exerciseType"
+            app:argType="project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType" />
+    </dialog>
+    <dialog
+        android:id="@+id/datePickerFragment2"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DatePickerFragment"
+        android:label="DatePickerFragment" >
+        <argument
+            android:name="date"
+            app:argType="java.util.Date" />
+    </dialog>
+    <dialog
+        android:id="@+id/timePickerFragment2"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.dialogs.TimePickerFragment"
+        android:label="TimePickerFragment" >
+        <argument
+            android:name="time"
+            app:argType="java.util.Date" />
+    </dialog>
 </navigation>

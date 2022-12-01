@@ -1,13 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
     tools:context=".ui.workout.WorkoutDetailFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/exercise_type_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceHeadline4"
+        tools:text="Exercise Type"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/running_distance_group"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:text="@string/workout_running_distance_text" />
+
+        <EditText
+            android:id="@+id/running_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/workout_distance_hint"
+            android:importantForAutofill="no"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pushup_times_group"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:text="@string/workout_pushup_times_text" />
+
+        <EditText
+            android:id="@+id/pushup_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/workout_pushup_times_hint"
+            android:importantForAutofill="no"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:text="@string/dietary_planned_date" />
+
+        <Button
+            android:id="@+id/exercise_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Wed May 11 2022"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:text="@string/dietary_planned_time" />
+
+        <Button
+            android:id="@+id/exercise_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="09:15 AM"/>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/is_done_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/is_done_label" />
+
+    <Button
+        android:id="@+id/exercise_edit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Edit"/>
+
+</LinearLayout>

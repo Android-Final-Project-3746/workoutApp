@@ -13,7 +13,7 @@ class PushUpExerciseRepository (private val dataSource: PushUpExerciseDataSource
 
     suspend fun removePushUp(pushUp: PushUpExercise) = dataSource.remove(pushUp);
 
-    suspend fun editPushUp(pushUp: PushUpExercise) = dataSource.updates(pushUp);
+    suspend fun updatePushUp(pushUp: PushUpExercise) = dataSource.updates(pushUp);
 
     suspend fun getPushUpById(id: UUID) = dataSource.getById(id);
 

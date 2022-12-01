@@ -3,23 +3,28 @@ package project.st991536629_st991576960.trung_yuxiao.ui.workout
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Delete
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentWorkoutListBinding
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.Confirmation
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteConfirmationDialogFragment
 import java.util.*
 
 
-class WorkoutListFragment : Fragment() {
+class WorkoutListFragment : Fragment(), MenuProvider {
 
     private val TAG = "WorkoutListFragment"
 
@@ -39,6 +44,10 @@ class WorkoutListFragment : Fragment() {
 
         binding.exercisesRecyclerView.layoutManager = LinearLayoutManager(context);
 
+        // Create option menu
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED);
+
         return binding.root
     }
 
@@ -55,9 +64,37 @@ class WorkoutListFragment : Fragment() {
                         },
                         { id: UUID, exerciseType: ExerciseType ->  // onExerciseDeleteClicked
                             Log.d(TAG, "Delete Exercise with ID = ${id} is clicked")
+                            findNavController().navigate(WorkoutListFragmentDirections.showDeleteConfirmDialog(id, exerciseType));
+                            //workoutListViewModel.deleteExerciseById(id, exerciseType);
                         })
                 }
             }
+        }
+
+        setFragmentResultListener(
+            DeleteConfirmationDialogFragment.REQUEST_KEY_CONFIRM
+        ) { requestKey, bundle ->
+            val confirmation = bundle.getSerializable(DeleteConfirmationDialogFragment.BUNDLE_KEY_CONFIRM) as Confirmation
+
+            if ( confirmation.confirm ) {
+                workoutListViewModel.deleteExerciseById(confirmation.exerciseID, confirmation.exerciseType);
+            } else {}
+        }
+    }
+
+    // Inflating option menu
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.fragment_list_diary, menu);
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.new_diary -> {
+                // Navigate to Fragment_workout_add
+
+                true
+            }
+            else -> super.onOptionsItemSelected(menuItem);
         }
     }
 

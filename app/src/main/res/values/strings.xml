@@ -14,4 +14,13 @@
     <string name="dietary_food_quantity">Quantity</string>
     <string name="dietary_planned_date">Planned Date</string>
     <string name="dietary_planned_time">Planned Time</string>
+    <string name="dialog_delete_confirmation">Are you sure you want to delete?</string>
+    <string name="confirm_deletion">Delete</string>
+    <string name="cancel_deletion">Cancel</string>
+    <string name="workout_running_distance_text">Distance</string>
+    <string name="workout_distance_hint">Enter distance in kilometer</string>
+    <string name="workout_pushup_times_text">Times</string>
+    <string name="workout_pushup_times_hint">Enter the expected time for pushup</string>
+    <string name="is_done_label">Done</string>
+    <string name="exercise_complete_text">Completed</string>
 </resources>

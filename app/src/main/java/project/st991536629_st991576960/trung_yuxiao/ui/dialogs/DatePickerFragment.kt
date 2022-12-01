@@ -1,4 +1,4 @@
-package project.st991536629_st991576960.trung_yuxiao.ui.pickers
+package project.st991536629_st991576960.trung_yuxiao.ui.dialogs
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -22,7 +22,7 @@ class DatePickerFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val calendar = Calendar.getInstance();
-        calendar.time = args.dietaryDate;
+        calendar.time = args.date;
         val initialYear = calendar.get(Calendar.YEAR);
         val initialMonth = calendar.get(Calendar.MONTH);
         val initialDay = calendar.get(Calendar.DAY_OF_MONTH)

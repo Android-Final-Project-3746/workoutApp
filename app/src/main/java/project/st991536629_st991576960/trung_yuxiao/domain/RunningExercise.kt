@@ -8,7 +8,40 @@ class RunningExercise(
     override val dateTime: Date,
     override val isDone: Boolean,
     val distance: Double,
-) : Exercise
+) : Exercise {
+    fun copy(id: UUID = this.id,
+             dateTime: Date = this.dateTime,
+             distance: Double = this.distance,
+             isDone: Boolean = this.isDone) = RunningExercise(id, dateTime,isDone, distance);
+
+    override fun updateID(value: UUID): Exercise {
+        return RunningExercise(
+            id = value,
+            dateTime = this.dateTime,
+            distance = this.distance,
+            isDone = this.isDone
+        )
+    }
+
+    override fun updateDateTime(value: Date): Exercise {
+        return RunningExercise(
+            id = this.id,
+            dateTime = value,
+            distance = this.distance,
+            isDone = this.isDone
+        )
+    }
+
+    override fun updateIsDone(value: Boolean): Exercise {
+        return RunningExercise(
+            id = this.id,
+            dateTime = this.dateTime,
+            distance = this.distance,
+            isDone = value
+        )
+    }
+
+}
 
 
 //data class RunningExercise(
