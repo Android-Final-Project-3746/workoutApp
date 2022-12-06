@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentDietaryBinding
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentWorkoutBinding
@@ -26,6 +27,8 @@ class DietaryFragment : Fragment() {
 
         _binding = FragmentDietaryBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.subtitle = ""
 
         return root
     }

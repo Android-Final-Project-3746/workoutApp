@@ -16,9 +16,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Delete
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentWorkoutListBinding
+import project.st991536629_st991576960.trung_yuxiao.domain.Exercise
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.Confirmation
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteConfirmationDialogFragment
 import java.util.*
@@ -56,7 +58,10 @@ class WorkoutListFragment : Fragment(), MenuProvider {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                workoutListViewModel.exercise.collect { exercises ->
+                workoutListViewModel.exercise.transform<List<Exercise>, List<Exercise>> { value ->
+                    val sortedResult = value.sortedByDescending { it.dateTime }
+                    emit(sortedResult);
+                }.collect { exercises ->
                     binding.exercisesRecyclerView.adapter = WorkoutListAdapter(exercises,
                         { id: UUID, exerciseType: ExerciseType ->  // onExerciseClicked
                             Log.d(TAG, "Exercise ID ${id} is clicked")
@@ -65,7 +70,6 @@ class WorkoutListFragment : Fragment(), MenuProvider {
                         { id: UUID, exerciseType: ExerciseType ->  // onExerciseDeleteClicked
                             Log.d(TAG, "Delete Exercise with ID = ${id} is clicked")
                             findNavController().navigate(WorkoutListFragmentDirections.showDeleteConfirmDialog(id, exerciseType));
-                            //workoutListViewModel.deleteExerciseById(id, exerciseType);
                         })
                 }
             }
@@ -92,6 +96,7 @@ class WorkoutListFragment : Fragment(), MenuProvider {
             R.id.new_diary -> {
                 // Navigate to Fragment_workout_add
 
+                findNavController().navigate(WorkoutListFragmentDirections.addWorkoutPlan())
                 true
             }
             else -> super.onOptionsItemSelected(menuItem);

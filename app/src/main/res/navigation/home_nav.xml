@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/open_in_webview"
+            app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/show_exercise_details"
+            app:destination="@id/workoutDetailFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.home.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="website_url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutDetailFragment2"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutDetailFragment"
+        android:label="fragment_workout_detail"
+        tools:layout="@layout/fragment_workout_detail" >
+        <argument
+            android:name="exerciseId"
+            app:argType="java.util.UUID" />
+        <argument
+            android:name="exerciseType"
+            app:argType="project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType" />
+    </fragment>
+</navigation>

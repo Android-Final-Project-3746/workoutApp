@@ -61,8 +61,10 @@ class WorkoutDetailFragment : Fragment() {
         binding.apply {
             if (args.exerciseType == ExerciseType.RUNNING) { // For Running Exercise
                 runningDistance.doOnTextChanged { text, start, before, count ->
-                    workoutDetailViewModel.updateExercise { oldValue ->
-                        (oldValue as RunningExercise).copy(distance = text.toString().toDouble())
+                    if ( text!!.isNotEmpty() && text.toString()!!.toDoubleOrNull() != null ) {
+                        workoutDetailViewModel.updateExercise { oldValue ->
+                            (oldValue as RunningExercise).copy(distance = text.toString().toDouble())
+                        }
                     }
                 }
 
@@ -71,8 +73,10 @@ class WorkoutDetailFragment : Fragment() {
                 exerciseTypeTitle.text = "RUNNING";
             } else {
                 pushupTime.doOnTextChanged { text, start, before, count ->
-                    workoutDetailViewModel.updateExercise { oldValue ->
-                        (oldValue as PushUpExercise).copy(times = text.toString().toLong())
+                    if ( text!!.isNotEmpty() && text.toString()!!.toDoubleOrNull() != null ) {
+                        workoutDetailViewModel.updateExercise { oldValue ->
+                            (oldValue as PushUpExercise).copy(times = text.toString().toLong())
+                        }
                     }
                 }
 

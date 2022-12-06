@@ -1,4 +1,4 @@
-package project.st991536629_st991576960.trung_yuxiao.framework
+package project.st991536629_st991576960.trung_yuxiao.framework.database
 
 import android.content.Context
 import kotlinx.coroutines.flow.Flow

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="project.st991536629_st991576960.trung_yuxiao.ui.home.HomeFragment"
+        android:name="project.st991536629_st991576960.trung_yuxiao.ui.home.HomeContainerFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home_container" />
     <fragment
         android:id="@+id/navigation_workout"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutFragment"

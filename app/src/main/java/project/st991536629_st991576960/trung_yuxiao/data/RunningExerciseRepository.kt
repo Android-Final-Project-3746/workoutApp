@@ -3,8 +3,7 @@ package project.st991536629_st991576960.trung_yuxiao.data
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import project.st991536629_st991576960.trung_yuxiao.domain.RunningExercise
-import project.st991536629_st991576960.trung_yuxiao.framework.RoomDietDataSource
-import project.st991536629_st991576960.trung_yuxiao.framework.RoomRunningExerciseDataSource
+import project.st991536629_st991576960.trung_yuxiao.framework.database.RoomRunningExerciseDataSource
 import java.util.*
 
 class RunningExerciseRepository(private val dataSource: RunningExerciseDataSource ) {
@@ -18,6 +17,8 @@ class RunningExerciseRepository(private val dataSource: RunningExerciseDataSourc
     suspend fun getRunningExerciseById(id: UUID) = dataSource.getById(id);
 
     suspend fun deleteById(id: UUID) = dataSource.deleteById(id);
+
+    suspend fun getAllOneTime(): List<RunningExercise> = dataSource.getAllOneTime();
 
     fun getAllRunningExercise(): Flow<List<RunningExercise>> = dataSource.getAll();
 

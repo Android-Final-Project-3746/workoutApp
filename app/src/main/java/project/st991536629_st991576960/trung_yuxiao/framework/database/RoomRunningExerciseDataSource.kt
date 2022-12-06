@@ -1,4 +1,4 @@
-package project.st991536629_st991576960.trung_yuxiao.framework
+package project.st991536629_st991576960.trung_yuxiao.framework.database
 
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
@@ -54,6 +54,19 @@ class RoomRunningExerciseDataSource(context: Context) : RunningExerciseDataSourc
 
     override suspend fun deleteById(id: UUID) {
         runningDao.deleteById(id);
+    }
+
+    override suspend fun getAllOneTime(): List<RunningExercise> {
+        val exercises = runningDao.getExercisesOneTime().map { entity ->
+            RunningExercise(
+                id = entity.id,
+                dateTime = entity.dateTime,
+                distance = entity.distance,
+                isDone = entity.isDone
+            )
+        }
+
+        return exercises;
     }
 
     override fun getAll(): Flow<List<RunningExercise>> {

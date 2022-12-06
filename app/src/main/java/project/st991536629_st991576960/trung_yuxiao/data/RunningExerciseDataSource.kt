@@ -15,5 +15,7 @@ interface RunningExerciseDataSource {
 
     suspend fun deleteById(id: UUID);
 
+    suspend fun getAllOneTime(): List<RunningExercise>;
+
     fun getAll(): Flow<List<RunningExercise>>
 }

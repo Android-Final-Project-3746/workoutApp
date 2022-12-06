@@ -15,6 +15,8 @@ interface PushUpExerciseDataSource {
 
     suspend fun deleteById(id: UUID);
 
+    suspend fun getAllOneTime(): List<PushUpExercise>
+
     fun getAll(): Flow<List<PushUpExercise>>
 
 }

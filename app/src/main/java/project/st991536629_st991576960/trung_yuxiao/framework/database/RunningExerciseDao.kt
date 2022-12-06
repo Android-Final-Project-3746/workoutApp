@@ -12,6 +12,9 @@ interface RunningExerciseDao {
     @Query("SELECT * FROM running_exercises")
     fun getAll(): Flow<List<RunningExerciseEntity>>
 
+    @Query("SELECT * FROM running_exercises")
+    suspend fun getExercisesOneTime(): List<RunningExerciseEntity>
+
     @Query("SELECT * FROM running_exercises WHERE id=(:id)")
     suspend fun getByID(id: UUID): RunningExerciseEntity;
 

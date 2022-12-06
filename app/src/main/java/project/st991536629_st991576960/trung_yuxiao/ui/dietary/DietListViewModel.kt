@@ -19,26 +19,10 @@ class DietListViewModel : ViewModel() {
 
     private val dietaryRepository = DietaryRepository.get();
 
-
     private val _dietaries: MutableStateFlow<List<DietModel>> = MutableStateFlow(emptyList());
     val dietaries: StateFlow<List<DietModel>> = _dietaries.asStateFlow()
 
     init {
-        Log.d(TAG, "start to add diary")
-        viewModelScope.launch {
-            dietaryRepository.addDietary(
-                DietModel(
-                    id = UUID.randomUUID(),
-                    dateTime = Date(),
-                    food = "Apple",
-                    quantity = "10",
-                )
-            )
-
-            Log.d(TAG, "done to add diary")
-        }
-
-        // collect all the
         viewModelScope.launch  {
             dietaryRepository.getAllDietary().collect {
                 Log.d(TAG, it.toString());

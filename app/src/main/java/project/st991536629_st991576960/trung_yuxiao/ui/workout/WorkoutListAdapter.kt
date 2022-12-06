@@ -38,7 +38,7 @@ class ExerciseHolder(
 
             // Display information that related to running exercise and hide
             // information about the pushup exercise
-            binding.exerciseRunningDistance.text = "${exercise.distance.toString()}";
+            binding.exerciseRunningDistance.text = "${exercise.distance.toString()} km";
             binding.exercisePushupTime.visibility = View.GONE
 
             // Set click listener on the ViewHolder and the delete button
@@ -64,7 +64,7 @@ class ExerciseHolder(
 
             // Display information that are related to pushup exercise
             // hide any information that are only specific for the running exercise
-            binding.exercisePushupTime.text = exercise.times.toString();
+            binding.exercisePushupTime.text = "${exercise.times.toString()} times";
             binding.exerciseRunningDistance.visibility = View.GONE
 
             binding.root.setOnClickListener {

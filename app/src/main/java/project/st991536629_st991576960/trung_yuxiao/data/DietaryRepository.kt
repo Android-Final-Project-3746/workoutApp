@@ -3,7 +3,7 @@ package project.st991536629_st991576960.trung_yuxiao.data
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import project.st991536629_st991576960.trung_yuxiao.domain.DietModel
-import project.st991536629_st991576960.trung_yuxiao.framework.RoomDietDataSource
+import project.st991536629_st991576960.trung_yuxiao.framework.database.RoomDietDataSource
 import java.util.*
 
 class DietaryRepository (private val dataSource: DietaryDataSource) {

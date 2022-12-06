@@ -24,7 +24,14 @@
         android:id="@+id/workoutAddFragment"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutAddFragment"
         android:label="fragment_workout_add"
-        tools:layout="@layout/fragment_workout_add" />
+        tools:layout="@layout/fragment_workout_add" >
+        <action
+            android:id="@+id/show_workout_add_time_picker"
+            app:destination="@id/timePickerFragment2" />
+        <action
+            android:id="@+id/show_workout_add_date_picker"
+            app:destination="@id/datePickerFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/workoutDetailFragment"
         android:name="project.st991536629_st991576960.trung_yuxiao.ui.workout.WorkoutDetailFragment"
