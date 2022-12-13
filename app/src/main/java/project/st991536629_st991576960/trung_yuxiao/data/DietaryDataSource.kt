@@ -14,5 +14,7 @@ interface DietaryDataSource {
 
     suspend fun getById(id: UUID): DietModel;
 
+    suspend fun deleteById(id: UUID);
+
     fun getAll(): Flow<List<DietModel>>
 }

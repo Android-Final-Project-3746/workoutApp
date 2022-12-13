@@ -52,6 +52,10 @@ class RoomDietDataSource(context: Context) : DietaryDataSource {
         )
     }
 
+    override suspend fun deleteById(id: UUID) {
+        dietDao.deleteById(id);
+    }
+
     override fun getAll(): Flow<List<DietModel>> {
         return dietDao.getAll().transform { items ->
 

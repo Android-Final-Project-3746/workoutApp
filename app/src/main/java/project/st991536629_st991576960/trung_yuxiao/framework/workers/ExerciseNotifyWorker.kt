@@ -12,7 +12,7 @@ import project.st991536629_st991576960.trung_yuxiao.NOTIFICATION_CHANNEL_ID
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.data.PushUpExerciseRepository
 import project.st991536629_st991576960.trung_yuxiao.data.RunningExerciseRepository
-import project.st991536629_st991576960.trung_yuxiao.utils.DateFormatUtil
+import project.st991536629_st991576960.trung_yuxiao.utils.DateUtil
 import java.util.*
 
 private const val TAG = "ExerciseNotifyWorker"
@@ -30,11 +30,11 @@ class ExerciseNotifyWorker(
         Log.i(TAG, "Work request is triggered at ${Date()}");
 
         val todayRunningExercises = runningExerciseRepository.getAllOneTime().filter { exercise ->
-            DateFormatUtil.compareCurrentDateToDate(exercise.dateTime);
+            DateUtil.compareCurrentDateToDate(exercise.dateTime);
         }
 
         val todayPushUpExercise = pushUpExerciseRepository.getAllOneTime().filter { exercise ->
-            DateFormatUtil.compareCurrentDateToDate(exercise.dateTime)
+            DateUtil.compareCurrentDateToDate(exercise.dateTime)
         }
 
         return try {

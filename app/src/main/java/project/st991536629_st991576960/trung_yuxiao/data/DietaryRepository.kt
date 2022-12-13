@@ -16,6 +16,8 @@ class DietaryRepository (private val dataSource: DietaryDataSource) {
 
     suspend fun getDietaryById(id: UUID): DietModel = dataSource.getById(id);
 
+    suspend fun deleteDietaryById(id: UUID) = dataSource.deleteById(id);
+
     fun getAllDietary(): Flow<List<DietModel>> = dataSource.getAll();
 
     companion object {

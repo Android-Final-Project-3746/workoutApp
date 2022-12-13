@@ -37,5 +37,8 @@
         <argument
             android:name="exerciseType"
             app:argType="project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType" />
+        <argument
+            android:name="onlySetCheck"
+            app:argType="boolean" />
     </fragment>
 </navigation>

@@ -21,7 +21,7 @@
     <string name="workout_distance_hint">Enter distance in kilometer</string>
     <string name="workout_pushup_times_text">Times</string>
     <string name="workout_pushup_times_hint">Enter the expected time for pushup</string>
-    <string name="is_done_label">Done</string>
+    <string name="is_done_label">Completed</string>
     <string name="exercise_complete_text">Completed</string>
     <string name="notification_channel_name">Exercises Notification</string>
 </resources>

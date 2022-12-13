@@ -1,6 +1,5 @@
 package project.st991536629_st991576960.trung_yuxiao.ui.home
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import project.st991536629_st991576960.trung_yuxiao.domain.Exercise
 import project.st991536629_st991576960.trung_yuxiao.domain.PushUpExercise
 import project.st991536629_st991576960.trung_yuxiao.domain.RunningExercise
 import project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType
-import project.st991536629_st991576960.trung_yuxiao.utils.DateFormatUtil
+import project.st991536629_st991576960.trung_yuxiao.utils.DateUtil
 import java.util.*
 
 class NextExerciseHolder(
@@ -20,7 +19,7 @@ class NextExerciseHolder(
 
     fun bind(exercise: Exercise, onExerciseClicked: (exerciseID: UUID, exerciseType: ExerciseType) -> Unit) {
         binding.apply {
-            exercisePlannedTime.text = "AT " + DateFormatUtil.getTimeStringFromDateTime(exercise.dateTime);
+            exercisePlannedTime.text = "AT " + DateUtil.getTimeStringFromDateTime(exercise.dateTime);
             completedText.visibility = if (exercise.isDone) {
                 View.VISIBLE
             } else {
@@ -28,7 +27,7 @@ class NextExerciseHolder(
             }
 
             if ( exercise is RunningExercise ) {
-                exerciseIcon.setImageResource(R.drawable.running);
+                exerciseIcon.setImageResource(R.drawable.running_home);
                 exerciseRunningDistance.text = "${exercise.distance.toString()} km"
                 exercisePushupTimes.visibility = View.GONE;
 
@@ -36,7 +35,7 @@ class NextExerciseHolder(
                     onExerciseClicked(exercise.id, ExerciseType.RUNNING)
                 }
             } else if ( exercise is PushUpExercise ) {
-                exerciseIcon.setImageResource(R.drawable.push_up);
+                exerciseIcon.setImageResource(R.drawable.pushup_home);
                 exercisePushupTimes.text = "${exercise.times.toString()} times"
                 exerciseRunningDistance.visibility = View.GONE;
 

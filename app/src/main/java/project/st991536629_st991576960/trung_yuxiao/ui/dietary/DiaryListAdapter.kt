@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import project.st991536629_st991576960.trung_yuxiao.databinding.ListItemDiaryBinding
 import project.st991536629_st991576960.trung_yuxiao.domain.DietModel
+import project.st991536629_st991576960.trung_yuxiao.utils.DateUtil
 import java.util.*
 
 
@@ -12,13 +13,17 @@ class DietaryHolder(
     private val binding: ListItemDiaryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(dietary: DietModel, onDietaryClicked: (dietaryId: UUID) -> Unit) {
+    fun bind(dietary: DietModel, onDietaryClicked: (dietaryId: UUID) -> Unit, onDeleteClicked: (dietaryId: UUID) -> Unit) {
         binding.diaryFood.text = dietary.food
         binding.diaryQuantity.text = dietary.quantity
-        binding.diaryDateTime.text = dietary.dateTime.toString()
+        binding.diaryDateTime.text = DateUtil.extractDateTime(dietary.dateTime);
 
         binding.root.setOnClickListener {
             onDietaryClicked(dietary.id);
+        }
+
+        binding.dietaryDeleteButton.setOnClickListener {
+            onDeleteClicked(dietary.id);
         }
     }
 }
@@ -26,7 +31,8 @@ class DietaryHolder(
 
 class DiaryListAdapter(
     private val dietaries: List<DietModel>,
-    private val onDietaryClicked: (dietaryId: UUID) -> Unit
+    private val onDietaryClicked: (dietaryId: UUID) -> Unit,
+    private val onDeleteClicked: (dietaryId: UUID) -> Unit
 ) : RecyclerView.Adapter<DietaryHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DietaryHolder {
@@ -37,7 +43,7 @@ class DiaryListAdapter(
 
     override fun onBindViewHolder(holder: DietaryHolder, position: Int) {
         val dietary = dietaries[position]
-        holder.bind(dietary, onDietaryClicked)
+        holder.bind(dietary, onDietaryClicked, onDeleteClicked)
     }
 
     override fun getItemCount(): Int {

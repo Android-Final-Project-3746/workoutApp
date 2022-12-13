@@ -28,13 +28,21 @@ class ExerciseHolder(
 //        binding.exerciseDateTime.text = exercise.dateTime.toString();
         binding.exerciseDateTime.text = extractDateTime(exercise.dateTime)
 
+        if ( exercise.isDone ) {
+            binding.completedText.text = "Completed";
+            binding.completedText.setTextColor(Color.parseColor("#46c864"))
+        } else {
+            binding.completedText.text = "Incompleted";
+            binding.completedText.setTextColor(Color.parseColor("#ec1a20"))
+        }
+
         if ( exercise is RunningExercise ) {
             binding.exerciseName.text = "Running"
-            binding.completedText.visibility = if (exercise.isDone) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
+//            binding.completedText.visibility = if (exercise.isDone) {
+//                View.VISIBLE
+//            } else {
+//                View.GONE
+//            }
 
             // Display information that related to running exercise and hide
             // information about the pushup exercise
@@ -54,11 +62,11 @@ class ExerciseHolder(
 
         } else if ( exercise is PushUpExercise ){
             binding.exerciseName.text = "Push-up"
-            binding.completedText.visibility = if (exercise.isDone) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
+//            binding.completedText.visibility = if (exercise.isDone) {
+//                View.VISIBLE
+//            } else {
+//                View.GONE
+//            }
 //            binding.doneCheckmark.visibility = View.VISIBLE
 
 

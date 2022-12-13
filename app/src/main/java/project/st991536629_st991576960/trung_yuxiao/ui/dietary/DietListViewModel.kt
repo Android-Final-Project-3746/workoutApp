@@ -35,6 +35,12 @@ class DietListViewModel : ViewModel() {
         dietaryRepository.addDietary(dietary);
     }
 
+    fun deleteDietary(dietaryId: UUID) {
+        viewModelScope.launch {
+            dietaryRepository.deleteDietaryById(dietaryId);
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         Log.d(TAG, "DietList Fragment is destroyed")

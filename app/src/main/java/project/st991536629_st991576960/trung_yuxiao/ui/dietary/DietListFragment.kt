@@ -7,6 +7,7 @@ import android.view.*
 import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +15,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentDietListBinding
 import project.st991536629_st991576960.trung_yuxiao.domain.DietModel
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.Confirmation
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteConfirmationDialogFragment
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteDietaryDialogFragment
+import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DietaryDelConfirmation
 import java.time.LocalDateTime
 import java.util.*
 
@@ -54,13 +60,32 @@ class DietListFragment : Fragment(), MenuProvider {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                dietListViewModel.dietaries.collect { dietaries ->
-                    binding.dietRecyclerView.adapter = DiaryListAdapter(dietaries) { dietaryId ->
-                        Log.d(TAG, "Navigate to Dietary Detail Fragment");
-                        findNavController().navigate(DietListFragmentDirections.showDietaryDetail(dietaryId));
-                    }
+                dietListViewModel.dietaries.transform<List<DietModel>, List<DietModel>> { dietaries ->
+                    val sortedResult = dietaries.sortedByDescending { it.dateTime }
+                    emit(sortedResult);
+                }.collect { dietaries ->
+                    binding.dietRecyclerView.adapter = DiaryListAdapter(dietaries,
+                        { dietaryId ->
+                            Log.d(TAG, "Navigate to Dietary Detail Fragment");
+                            findNavController().navigate(DietListFragmentDirections.showDietaryDetail(dietaryId));
+                        },
+
+                        { dietaryId ->  
+                            Log.d(TAG, "Delete dietary with ID: ${dietaryId}")
+                            findNavController().navigate(DietListFragmentDirections.deleteDietaryById(dietaryId));
+                        }) 
                 }
             }
+        }
+
+        setFragmentResultListener(
+            DeleteDietaryDialogFragment.REQUEST_KEY_CONFIRM
+        ) { requestKey, bundle ->
+            val confirmation = bundle.getSerializable(DeleteDietaryDialogFragment.BUNDLE_KEY_CONFIRM) as DietaryDelConfirmation
+
+            if ( confirmation.confirm) {
+                dietListViewModel.deleteDietary(confirmation.dietaryId)
+            } else {}
         }
     }
 

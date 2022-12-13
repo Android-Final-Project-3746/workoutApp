@@ -41,14 +41,24 @@
 
     <ImageView
         android:id="@+id/diet_image"
-        android:layout_width="24dp"
+        android:layout_width="21dp"
         android:layout_height="24dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dietary_delete_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diet" />
+
+    <ImageButton
+        android:id="@+id/dietary_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="#ffffff"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/diet" />
+        app:srcCompat="@drawable/ic_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

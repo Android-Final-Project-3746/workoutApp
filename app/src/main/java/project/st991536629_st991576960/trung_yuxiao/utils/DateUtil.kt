@@ -6,10 +6,10 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class DateFormatUtil {
+class DateUtil {
     companion object {
         fun extractDate(dateTime: Date): String {
-            val pattern = "EEE, dd MMMM yyyy"
+            val pattern = "EEEE, dd MMMM yyyy"
             val localDateTime = convertDateToLocalDate(dateTime)
             val localDate = localDateTime.toLocalDate()
             val result: String = "${localDate.format(DateTimeFormatter.ofPattern(pattern))}"
@@ -17,12 +17,19 @@ class DateFormatUtil {
             return result
         }
 
+        fun extractDateTime(dateTime: Date): String {
+            val pattern = "EEE, dd MMMM yyyy hh:mm a"
+            val localDateTime = convertDateToLocalDate(dateTime)
+
+            return "${localDateTime.format(DateTimeFormatter.ofPattern(pattern))}"
+        }
+
         fun extractTime(dateTime: Date): String {
             val pattern = "hh:mm a";
 
             val localDateTime = convertDateToLocalDate(dateTime)
             val localTime = localDateTime.toLocalTime();
-            val result : String = "${localTime.format(DateTimeFormatter.ofPattern(pattern))}"
+            val result = "${localTime.format(DateTimeFormatter.ofPattern(pattern))}"
 
             return result;
         }
@@ -38,7 +45,7 @@ class DateFormatUtil {
 
             val localDateTime = convertDateToLocalDate(dateTime)
             val localTime = localDateTime.toLocalTime();
-            val result : String = "${localTime.format(DateTimeFormatter.ofPattern(pattern))}"
+            val result = "${localTime.format(DateTimeFormatter.ofPattern(pattern))}"
 
             return result;
         }
@@ -54,5 +61,11 @@ class DateFormatUtil {
 
             return false;
         }
+
+        fun extractLocalDateTime(localDateTime: LocalDateTime): String {
+            val pattern = "EEE, dd MMMM yyyy hh:mm a"
+            return "${localDateTime.format(DateTimeFormatter.ofPattern(pattern))}"
+        }
+
     }
 }

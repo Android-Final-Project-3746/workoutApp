@@ -49,6 +49,9 @@
         <action
             android:id="@+id/show_workout_date_picker"
             app:destination="@id/datePickerFragment2" />
+        <argument
+            android:name="onlySetCheck"
+            app:argType="boolean" />
     </fragment>
     <dialog
         android:id="@+id/deleteConfirmationDialogFragment"

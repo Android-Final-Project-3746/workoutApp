@@ -65,7 +65,7 @@ class WorkoutListFragment : Fragment(), MenuProvider {
                     binding.exercisesRecyclerView.adapter = WorkoutListAdapter(exercises,
                         { id: UUID, exerciseType: ExerciseType ->  // onExerciseClicked
                             Log.d(TAG, "Exercise ID ${id} is clicked")
-                            findNavController().navigate(WorkoutListFragmentDirections.showExerciseDetail(id,exerciseType))
+                            findNavController().navigate(WorkoutListFragmentDirections.showExerciseDetail(id,exerciseType, false))
                         },
                         { id: UUID, exerciseType: ExerciseType ->  // onExerciseDeleteClicked
                             Log.d(TAG, "Delete Exercise with ID = ${id} is clicked")

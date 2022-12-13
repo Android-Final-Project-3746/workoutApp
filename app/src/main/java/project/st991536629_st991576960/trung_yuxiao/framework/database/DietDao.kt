@@ -28,4 +28,6 @@ interface DietDao {
     @Delete
     suspend fun delete(diet: DietEntity);
 
+    @Query("DELETE FROM diets WHERE id=(:id)")
+    suspend fun deleteById(id: UUID);
 }

@@ -1,11 +1,11 @@
 package project.st991536629_st991576960.trung_yuxiao.ui.workout
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -13,7 +13,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentWorkoutAddBinding
@@ -22,7 +21,7 @@ import project.st991536629_st991576960.trung_yuxiao.domain.PushUpExercise
 import project.st991536629_st991576960.trung_yuxiao.domain.RunningExercise
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DatePickerFragment
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.TimePickerFragment
-import project.st991536629_st991576960.trung_yuxiao.utils.DateFormatUtil
+import project.st991536629_st991576960.trung_yuxiao.utils.DateUtil
 import java.util.*
 
 
@@ -49,6 +48,9 @@ class WorkoutAddFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+
+            addIsDoneCheckBox.visibility = View.GONE;
+
             radioGroup.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     R.id.running_radio_btn ->
@@ -75,11 +77,11 @@ class WorkoutAddFragment : Fragment() {
                 }
             }
 
-            addIsDoneCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                workoutAddViewModel.updateExercise { oldValue ->
-                    oldValue.updateIsDone(isChecked)
-                }
-            }
+//            addIsDoneCheckBox.setOnCheckedChangeListener { _, isChecked ->
+//                workoutAddViewModel.updateExercise { oldValue ->
+//                    oldValue.updateIsDone(isChecked)
+//                }
+//            }
 
             exerciseAddBtn.setOnClickListener {
                 workoutAddViewModel.addToDatabase()
@@ -105,6 +107,17 @@ class WorkoutAddFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 workoutAddViewModel.exercise.collect() { exercise ->
                     exercise?.let { updateUI(it) }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                workoutAddViewModel.message.collect() { message ->
+                    if ( !message.isNullOrBlank() ) {
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+                        workoutAddViewModel.resetMessage();
+                    }
                 }
             }
         }
@@ -134,9 +147,9 @@ class WorkoutAddFragment : Fragment() {
                 }
             }
 
-            addIsDoneCheckBox.isChecked = exercise.isDone;
-            addExerciseDatePicker.text = DateFormatUtil.extractDate(exercise.dateTime);
-            addExerciseTimePicker.text = DateFormatUtil.extractTime(exercise.dateTime);
+            //addIsDoneCheckBox.isChecked = exercise.isDone;
+            addExerciseDatePicker.text = DateUtil.extractDate(exercise.dateTime);
+            addExerciseTimePicker.text = DateUtil.extractTime(exercise.dateTime);
 
             addExerciseDatePicker.setOnClickListener {
                 findNavController().navigate(WorkoutAddFragmentDirections.showWorkoutAddDatePicker(exercise.dateTime));
