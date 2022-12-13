@@ -48,29 +48,3 @@ class WorkoutListViewModel : ViewModel() {
         return newList
     }
 }
-
-
-//        viewModelScope.launch {
-//
-//            delay(3000)
-//            runningExerciseRepository.addRunningExercise(RunningExercise(
-//                id = UUID.randomUUID(),
-//                dateTime = Date(),
-//                distance = 1.0,
-//                isDone = false
-//            ))
-//
-//            runningExerciseRepository.addRunningExercise(RunningExercise(
-//                id = UUID.randomUUID(),
-//                dateTime = Date(),
-//                distance = 8.5,
-//                isDone = true
-//            ))
-//
-//            pushUpExerciseRepository.addPushUp(PushUpExercise(
-//                id = UUID.randomUUID(),
-//                dateTime = Date(),
-//                times = 500,
-//                isDone = true
-//            ))
-//        }

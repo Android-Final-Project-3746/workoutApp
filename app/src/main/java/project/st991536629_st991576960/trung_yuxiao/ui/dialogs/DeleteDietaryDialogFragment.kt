@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import project.st991536629_st991576960.trung_yuxiao.R
-import project.st991536629_st991576960.trung_yuxiao.ui.workout.ExerciseType
 import java.util.*
 
 class DeleteDietaryDialogFragment: DialogFragment() {

@@ -77,12 +77,6 @@ class WorkoutAddFragment : Fragment() {
                 }
             }
 
-//            addIsDoneCheckBox.setOnCheckedChangeListener { _, isChecked ->
-//                workoutAddViewModel.updateExercise { oldValue ->
-//                    oldValue.updateIsDone(isChecked)
-//                }
-//            }
-
             exerciseAddBtn.setOnClickListener {
                 workoutAddViewModel.addToDatabase()
             }
@@ -147,7 +141,6 @@ class WorkoutAddFragment : Fragment() {
                 }
             }
 
-            //addIsDoneCheckBox.isChecked = exercise.isDone;
             addExerciseDatePicker.text = DateUtil.extractDate(exercise.dateTime);
             addExerciseTimePicker.text = DateUtil.extractTime(exercise.dateTime);
 

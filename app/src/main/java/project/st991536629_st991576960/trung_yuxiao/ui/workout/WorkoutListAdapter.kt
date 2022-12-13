@@ -16,7 +16,6 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
 class ExerciseHolder(
     private val binding: ListItemExerciseBinding
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -25,7 +24,6 @@ class ExerciseHolder(
              onExerciseClicked: (id: UUID, exerciseType: ExerciseType) -> Unit,
              onExerciseDeleteClicked: (id: UUID, exerciseType: ExerciseType) -> Unit) {
 
-//        binding.exerciseDateTime.text = exercise.dateTime.toString();
         binding.exerciseDateTime.text = extractDateTime(exercise.dateTime)
 
         if ( exercise.isDone ) {
@@ -38,11 +36,6 @@ class ExerciseHolder(
 
         if ( exercise is RunningExercise ) {
             binding.exerciseName.text = "Running"
-//            binding.completedText.visibility = if (exercise.isDone) {
-//                View.VISIBLE
-//            } else {
-//                View.GONE
-//            }
 
             // Display information that related to running exercise and hide
             // information about the pushup exercise
@@ -62,13 +55,6 @@ class ExerciseHolder(
 
         } else if ( exercise is PushUpExercise ){
             binding.exerciseName.text = "Push-up"
-//            binding.completedText.visibility = if (exercise.isDone) {
-//                View.VISIBLE
-//            } else {
-//                View.GONE
-//            }
-//            binding.doneCheckmark.visibility = View.VISIBLE
-
 
             // Display information that are related to pushup exercise
             // hide any information that are only specific for the running exercise
@@ -86,7 +72,6 @@ class ExerciseHolder(
             binding.exerciseTypeImage.setImageResource(R.drawable.push_up);
         }
     }
-
 
     private fun extractDateTime(dateTime: Date): String {
         val pattern = "EEE, dd MMMM yyyy hh:mm a"
@@ -124,7 +109,6 @@ class WorkoutListAdapter(
         return exercises.size;
     }
 }
-
 
 enum class ExerciseType{
     RUNNING,

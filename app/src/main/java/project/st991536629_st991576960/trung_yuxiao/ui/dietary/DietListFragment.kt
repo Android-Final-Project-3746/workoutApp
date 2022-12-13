@@ -14,17 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import project.st991536629_st991576960.trung_yuxiao.R
 import project.st991536629_st991576960.trung_yuxiao.databinding.FragmentDietListBinding
 import project.st991536629_st991576960.trung_yuxiao.domain.DietModel
-import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.Confirmation
-import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteConfirmationDialogFragment
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DeleteDietaryDialogFragment
 import project.st991536629_st991576960.trung_yuxiao.ui.dialogs.DietaryDelConfirmation
-import java.time.LocalDateTime
 import java.util.*
 
 

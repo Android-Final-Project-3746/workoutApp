@@ -55,7 +55,6 @@ class NextExercisesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NextExerciseHolder {
         val inflater = LayoutInflater.from(parent.context);
         val binding = NextExerciseItemBinding.inflate(inflater, parent, false)
-        //binding.root.layoutParams.width = Math.floor(( parent.width * 0.45 )).toInt();
         return NextExerciseHolder(binding);
     }
 

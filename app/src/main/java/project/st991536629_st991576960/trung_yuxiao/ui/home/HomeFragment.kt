@@ -16,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -151,7 +152,7 @@ class HomeFragment : Fragment() {
             pieChartRunning.centerText =
                         "Total distance: ${totalDistance} km\n " +
                         "Completed: ${completedDistance} km\n " +
-                        "Days left: ${daysLeft + 1} days"
+                        "Days left: ${daysLeft + 1} ${ if ((daysLeft + 1) > 1) "days" else "day"  }"
             pieChartRunning.setCenterTextSize(18f)
             pieChartRunning.setCenterTextTypeface(Typeface.DEFAULT_BOLD)
 
@@ -194,8 +195,20 @@ class HomeFragment : Fragment() {
             // Set Center Text
             pieChartRunning.setDrawCenterText(true);
 
-            // Disable rotation
-            pieChartRunning.isRotationEnabled = false;
+            // disable legends
+            pieChartRunning.legend.isEnabled = false;
+
+            // on below line we are setting
+            // rotation for our pie chart
+            pieChartRunning.rotationAngle = 450f
+
+            // enable rotation of the pieChart by touch
+
+            pieChartRunning.isHighlightPerTapEnabled = true
+
+            // on below line we are setting animation for our pie chart
+            pieChartRunning.animateY(1400, Easing.EaseInOutQuad)
+            pieChartRunning.isRotationEnabled = false
         }
     }
 
@@ -231,9 +244,9 @@ class HomeFragment : Fragment() {
 
             // Set Text for center circle
             pieChartPushup.centerText =
-                "Total distance: ${totalTimes} times\n " +
+                "Total: ${totalTimes} times\n " +
                         "Completed: ${completedTimes} times\n " +
-                        "Days left: ${daysLeft + 1} days"
+                        "Days left: ${daysLeft + 1} ${ if ((daysLeft + 1) > 1) "days" else "day"  }"
             pieChartPushup.setCenterTextSize(18f)
             pieChartPushup.setCenterTextTypeface(Typeface.DEFAULT_BOLD)
 
@@ -257,6 +270,8 @@ class HomeFragment : Fragment() {
             pieChartPushup.data = data
 
             pieChartPushup.highlightValues(null)
+
+            // redraw the chart
             pieChartPushup.invalidate()
         }
     }
@@ -267,8 +282,7 @@ class HomeFragment : Fragment() {
             pieChartPushup.description.isEnabled = false;
             pieChartPushup.setExtraOffsets(10f, 10f, 10f, 5f)
 
-
-            // Set hole
+            // Set pie hole
             pieChartPushup.isDrawHoleEnabled = true;
             pieChartPushup.setHoleColor(Color.WHITE);
             pieChartPushup.setHoleRadius(80f)
@@ -277,8 +291,19 @@ class HomeFragment : Fragment() {
             // Set Center Text
             pieChartPushup.setDrawCenterText(true);
 
-            // Disable rotation
-            pieChartPushup.isRotationEnabled = false;
+            // disable legends
+            pieChartPushup.legend.isEnabled = false;
+
+            // on below line we are setting
+            // rotation for our pie chart
+            pieChartPushup.rotationAngle = 450f
+
+            // enable rotation of the pieChart by touch
+            pieChartPushup.isHighlightPerTapEnabled = true
+
+            // on below line we are setting animation for our pie chart
+            pieChartPushup.animateY(1400, Easing.EaseInOutQuad)
+            pieChartPushup.isRotationEnabled = false
         }
     }
 

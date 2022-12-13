@@ -34,13 +34,6 @@ class DatePickerFragment : DialogFragment() {
 
             val resultDate = GregorianCalendar(year, month, day, chosenHour, chosenMinute).time
 
-            /**
-             * sent the result back to the CrimeDetailFragment
-             *
-             * Once you have the date, it needs to be sent back to CrimeDetailFragment.
-             * To pass data between fragments, you need to package your results inside a
-             * key-value Bundle.
-             */
             setFragmentResult(REQUEST_KEY_DATE, bundleOf(BUNDLE_KEY_DATE to resultDate))
         }
 
